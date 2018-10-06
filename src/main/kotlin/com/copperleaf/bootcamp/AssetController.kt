@@ -8,7 +8,7 @@ class AssetController {
 
     @GetMapping("/assets")
     fun getAssets(): List<Asset> {
-        val assets: List<Asset> = (0..4).map { it -> Asset(id = it, name = "Asset #" + (it + 1)) }
+        val assets: List<Asset> = (0..4).map { it -> Asset(id = it, name = "Asset #${it + 1}") }
 
         return assets
     }
