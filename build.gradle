@@ -2,6 +2,7 @@ buildscript {
 	ext {
 		kotlinVersion = '1.2.10'
 		springBootVersion = '2.0.5.RELEASE'
+		hibernateVersion = '5.1.11.Final'
 	}
 	repositories {
 		mavenCentral()
@@ -13,16 +14,30 @@ buildscript {
 		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
 		classpath('org.hibernate:hibernate-core')
 		classpath("org.liquibase.ext:liquibase-hibernate5:3.6")
-
-//		classpath "gradle.plugin.org.liquibase:liquibase-gradle-plugin:2.0.1"
+		classpath("org.liquibase:liquibase-core:3.5.3")
+		classpath("gradle.plugin.org.liquibase:liquibase-gradle-plugin:1.2.4")
+		classpath "org.postgresql:postgresql:42.1.4"
 		classpath "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
+
+		classpath "org.springframework:spring-beans:4.3.10.RELEASE"
+		classpath "org.springframework:spring-core:4.3.10.RELEASE"
+		classpath "org.springframework:spring-context:4.3.10.RELEASE"
+		classpath "org.springframework:spring-jdbc:4.3.10.RELEASE"
+		classpath "org.springframework:spring-orm:4.3.10.RELEASE"
+
+		classpath "org.springframework.data:spring-data-commons:1.11.6.RELEASE"
+		classpath "org.springframework.data:spring-data-jpa:1.11.6.RELEASE"
+
+		classpath "org.hibernate:hibernate-core:$hibernateVersion"
+		classpath "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+
 		classpath files('src/main')
 		classpath files('build/classes/kotlin/main')
 	}
 }
 
 plugins {
-    id 'org.liquibase.gradle' version '2.0.1'
+    id 'org.liquibase.gradle' version '1.2.4'
 }
 
 apply plugin: 'kotlin'
@@ -61,35 +76,31 @@ dependencies {
 	compile('org.springframework.data:spring-data-rest-hal-browser')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	compile("org.jetbrains.kotlin:kotlin-reflect")
+	compile('org.liquibase.ext:liquibase-hibernate5:3.6')
 	compile("org.hibernate:hibernate-core")
+	compile('org.liquibase:liquibase-gradle-plugin:1.2.4')
+	compile('org.postgresql:postgresql:42.1.4')
 
-	runtime 'org.postgresql:postgresql'
-
-	liquibaseRuntime 'org.liquibase:liquibase-core:3.6.1'
-	liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.0.1'
-	liquibaseRuntime 'org.liquibase.ext:liquibase-hibernate5:3.6'
-	liquibaseRuntime 'org.postgresql:postgresql'
-	liquibaseRuntime files('src/main')
+	runtime 'org.postgresql:postgresql'`
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-apply from: 'liquibase.gradle'
-
-//liquibase {
-//    activities {
-//        main {
-//			classpath 'src/main'
-//            changeLogFile "$projectDir/src/main/resources/db/changelog/db.changelog.xml"
-//            url 'jdbc:postgresql://localhost:5432/bootcamp'
-//            username "bootcamp"
-//            password "bootcamp"
-//            referenceUrl 'hibernate:spring:com.copperleaf.bootcamp?dialect=org.hibernate.dialect.PostgreSQLDialect'
-//            driver 'org.postgresql.Driver'
-//        }
-//    }
-//    runList = 'main'
-//}
+liquibase {
+    activities {
+        main {
+			classpath 'src/main'
+            changeLogFile "$projectDir/src/main/resources/db/changelog/db.changelog.xml"
+            url 'jdbc:postgresql://localhost:5432/bootcamp'
+			referenceUrl 'hibernate:spring:com.copperleaf.bootcamp?dialect=org.hibernate.dialect.PostgreSQLDialect'
+			username "bootcamp"
+			password "bootcamp"
+            driver 'org.postgresql.Driver'
+			referenceDriver 'liquibase.ext.hibernate.database.connection.HibernateDriver'
+        }
+    }
+    runList = 'main'
+}
 
 
 test {
