@@ -12,6 +12,4 @@ class AssetController(private val assetRepository: AssetRepository) {
 //        return assets
         return assetRepository.findAll()
     }
-
-
 }
