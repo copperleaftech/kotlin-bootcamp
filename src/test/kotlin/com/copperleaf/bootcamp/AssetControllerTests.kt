@@ -39,18 +39,18 @@ class AssetControllerTests {
         println("test println")
 
 //        ref https://stackoverflow.com/a/39688441 for why getForObject()/getForEntity() won't work with List<Asset>
-        val request: RequestEntity<Any> = RequestEntity<Any>(HttpMethod.GET, URI.create("/assets"))
-        val response: ResponseEntity<List<Asset>> = this.restTemplate.exchange(request, object: ParameterizedTypeReference<List<Asset>>() {})
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK)
-
-        val assets: List<Asset>? = response.getBody()
-        assertThat(assets?.size).isEqualTo(5)
-        assets?.let {
-            for ((index, asset) in assets.withIndex()) {
-                assertThat(asset.id).isEqualTo(index)
-                assertThat(asset.name).isEqualTo("Asset #${ index + 1 }")
-            }
-        }
+//        val request: RequestEntity<Any> = RequestEntity<Any>(HttpMethod.GET, URI.create("/assets"))
+//        val response: ResponseEntity<List<Asset>> = this.restTemplate.exchange(request, object: ParameterizedTypeReference<List<Asset>>() {})
+//        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK)
+//
+//        val assets: List<Asset>? = response.getBody()
+//        assertThat(assets?.size).isEqualTo(5)
+//        assets?.let {
+//            for ((index, asset) in assets.withIndex()) {
+//                assertThat(asset.id).isEqualTo(index)
+//                assertThat(asset.name).isEqualTo("Asset #${ index + 1 }")
+//            }
+//        }
     }
 
 }
