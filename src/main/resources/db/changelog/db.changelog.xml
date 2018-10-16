@@ -40,4 +40,29 @@
     <changeSet author="SYin (generated)" id="1539377030151-2">
         <addForeignKeyConstraint baseColumnNames="investment_id" baseTableName="asset" constraintName="FKgnshhxi56ivtxljrtloi0hto2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="investment"/>
     </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-1">
+        <createTable tableName="investment_asset">
+            <column name="investment_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-2">
+        <addPrimaryKey columnNames="investment_id, asset_id" tableName="investment_asset"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-3">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="investment_asset" constraintName="FKml5bpgfxkiwu9sa15skcr6nww" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="investment"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-4">
+        <dropForeignKeyConstraint baseTableName="asset" constraintName="FKgnshhxi56ivtxljrtloi0hto2"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-5">
+        <dropColumn columnName="investment_id" tableName="asset"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-6">
+        <dropColumn columnName="value_measures" tableName="asset"/>
+    </changeSet>
 </databaseChangeLog>
