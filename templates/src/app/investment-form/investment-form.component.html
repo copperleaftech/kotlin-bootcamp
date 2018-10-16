@@ -1,4 +1,5 @@
 <div class="container">
+  <form #investmentForm="ngForm" (ngsubmit)="onSubmit()">
     <div class="text-entry investment-title">
       <input id="investment-title" name="investment-title" type="text" placeholder="My New Investment">
       <label for="investment-title">Investment Title</label>
@@ -16,7 +17,6 @@
       </div>
     </div>
 
-
     <div class="longform-entry">
       <label for="project-reason">Project Reason</label>
       <textarea name="project-reason" id="project-reason"></textarea>
@@ -27,7 +27,30 @@
       <textarea name="project-scope" id="project-scope"></textarea>
     </div>
 
-    <app-assets></app-assets>
+    <h3 class="secondary-heading"><span>Assets</span></h3>
+    <table *ngIf="assets" class="asset-table">
+      <thead>
+      <tr>
+        <th>Selected</th>
+        <th>Asset Name</th>
+        <th>Asset Type</th>
+        <th>Location/Facility</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let asset of assets">
+        <td><input type="checkbox" id="{{asset.id}}"></td>
+        <td>{{asset.name}}</td>
+        <td>{{asset.type}}</td>
+        <td>{{asset.location}}</td>
+      </tr>
+
+      </tbody>
+
+
+    </table>
 
     <button type="submit">Submit</button>
+  </form>
 </div>

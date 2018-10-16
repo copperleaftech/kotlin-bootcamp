@@ -1,20 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { InvestmentFormComponent } from './investment-form/investment-form.component';
-import { AssetsComponent } from './assets/assets.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InvestmentFormComponent,
-    AssetsComponent
+    InvestmentFormComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
