@@ -6,6 +6,8 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -37,6 +39,10 @@ class Investment(
     @Column(name = "project_scope")
     val projectScope: String = "",
 
-    @ManyToMany(mappedBy = "investments")
-    val assets: MutableSet<Asset> = HashSet()
+    @ManyToMany()
+    @JoinTable(name = "investment_asset",
+        joinColumns = arrayOf(JoinColumn(name = "asset_id", referencedColumnName = "id")),
+        inverseJoinColumns = arrayOf(JoinColumn(name = "investment_id", referencedColumnName = "id"))
+    )
+    val assets: List<Asset> = listOf()
 )

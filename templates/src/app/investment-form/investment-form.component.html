@@ -1,33 +1,38 @@
 <div class="container">
-  <form #investmentForm="ngForm" (ngsubmit)="onSubmit()">
+  <form #investmentForm="ngForm" (ngSubmit)="onSubmit(investmentForm)">
     <div class="text-entry investment-title">
-      <input id="investment-title" name="investment-title" type="text" placeholder="My New Investment">
+      <input [(ngModel)]="model.investmentTitle" id="investment-title" name="title" type="text" placeholder="My New Investment">
       <label for="investment-title">Investment Title</label>
     </div>
 
     <div class="half-width-container">
       <div class="text-entry half-width">
-        <input id="sponsor-name" name="sponsor-name" type="text" placeholder="Sponsor Name">
+        <input [(ngModel)]="model.sponsorName" id="sponsor-name" name="sponsorName" type="text" placeholder="Sponsor Name">
         <label for="sponsor-name">Sponsor Name</label>
       </div>
 
       <div class="text-entry half-width">
-        <input id="required-by" name="required-by" type="text" placeholder="Enter a Date">
+        <input [(ngModel)]="model.requiredBy" id="required-by" name="requiredBy" type="text" placeholder="Enter a Date">
         <label for="required-by">Required By</label>
       </div>
     </div>
 
     <div class="longform-entry">
       <label for="project-reason">Project Reason</label>
-      <textarea name="project-reason" id="project-reason"></textarea>
+      <textarea [(ngModel)]="model.projectReason" name="projectReason" id="project-reason"></textarea>
     </div>
 
     <div class="longform-entry">
       <label for="project-scope">Project Scope</label>
-      <textarea name="project-scope" id="project-scope"></textarea>
+      <textarea [(ngModel)]="model.projectScope" name="projectScope" id="project-scope"></textarea>
     </div>
 
     <h3 class="secondary-heading"><span>Assets</span></h3>
+
+    <div class="asset-search">
+      <input id="asset-search-box" type="text">
+    </div>
+
     <table *ngIf="assets" class="asset-table">
       <thead>
       <tr>
@@ -40,17 +45,16 @@
 
       <tbody>
       <tr *ngFor="let asset of assets">
-        <td><input type="checkbox" id="{{asset.id}}"></td>
+        <td><input type="checkbox" value="{{asset.id}}" name="asset-{{asset.id}}" (click)="toggleAssetSelection(asset.id)"></td>
         <td>{{asset.name}}</td>
         <td>{{asset.type}}</td>
         <td>{{asset.location}}</td>
       </tr>
 
       </tbody>
-
-
     </table>
 
+    <br>
     <button type="submit">Submit</button>
   </form>
 </div>

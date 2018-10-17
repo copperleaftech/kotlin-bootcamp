@@ -65,4 +65,7 @@
     <changeSet author="SYin (generated)" id="1539640773393-6">
         <dropColumn columnName="value_measures" tableName="asset"/>
     </changeSet>
+    <changeSet author="SYin (generated)" id="1539734387305-1">
+        <dropPrimaryKey constraintName="investment_asset_pkey" tableName="investment_asset"/>
+    </changeSet>
 </databaseChangeLog>

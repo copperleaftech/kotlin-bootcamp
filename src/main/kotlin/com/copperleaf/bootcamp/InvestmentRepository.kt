@@ -6,4 +6,4 @@ import org.springframework.web.bind.annotation.CrossOrigin
 
 @CrossOrigin(origins = ["http://localhost"])
 @RepositoryRestResource(collectionResourceRel = "investments", path = "investments")
-interface InvestmentRepository : JpaRepository<Investment, Long>
+interface InvestmentRepository : JpaRepository<Investment, Int>
