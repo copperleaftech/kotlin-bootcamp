@@ -16,21 +16,21 @@ export class InvestmentFormComponent implements OnInit {
   apiUrlBase = 'http://localhost:8080/v1/'
   investmentsApiUrl = this.apiUrlBase + 'investments'
   assetsApiUrl = this.apiUrlBase + 'assets'
+  assetSearchApiUrlBase = this.apiUrlBase + 'assets/search/queryByNameContainingOrTypeContainingOrLocationContainingAllIgnoreCase'
 
   assets = []; // is this necessary?
   selectedAssets = []; // ugh
+  filteredAssets = null;
 
   model = new Investment();
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    console.log('init');
     this.getAssets();
   }
 
   getAssets() {
-    console.log('getAssets');
     this.http.get(this.assetsApiUrl).subscribe((data) => {
       console.log('data', data._embedded.assets);
       this.assets = data._embedded.assets;
@@ -38,7 +38,6 @@ export class InvestmentFormComponent implements OnInit {
   }
 
   toggleAssetSelection(assetId) {
-    console.log(assetId)
     const foundIndex = this.selectedAssets.indexOf(assetId);
 
     if (foundIndex !== -1) {
@@ -48,10 +47,19 @@ export class InvestmentFormComponent implements OnInit {
     }
   }
 
+  search(event) {
+    const query = event.target.value;
+    const searchUrl = `${this.assetSearchApiUrlBase}?name=${query}&type=${query}&location=${query}`;
+
+    this.http.get(searchUrl).subscribe((data) => {
+      this.filteredAssets = data._embedded.assets;
+    });
+  }
+
   createInvestment(data) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type': 'application/json'
       })
     };
 
@@ -61,7 +69,7 @@ export class InvestmentFormComponent implements OnInit {
   addAssets() {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'text/uri-list'
+        'Content-Type': 'text/uri-list'
       })
     };
 
@@ -92,7 +100,5 @@ export class InvestmentFormComponent implements OnInit {
         this.model = rsp;
         this.addAssets();
       });
-
   }
-
 }

@@ -30,7 +30,8 @@
     <h3 class="secondary-heading"><span>Assets</span></h3>
 
     <div class="asset-search">
-      <input id="asset-search-box" type="text">
+      <label for="asset-search-box">Search</label>
+      <input id="asset-search-box" type="text" (keyup)="search($event)">
     </div>
 
     <table *ngIf="assets" class="asset-table">
@@ -44,8 +45,10 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let asset of assets">
-        <td><input type="checkbox" value="{{asset.id}}" name="asset-{{asset.id}}" (click)="toggleAssetSelection(asset.id)"></td>
+      <tr *ngFor="let asset of (filteredAssets ? filteredAssets : assets)">
+        <td><input type="checkbox" value="{{asset.id}}" name="asset-{{asset.id}}"
+                   (click)="toggleAssetSelection(asset.id)"
+                   [checked]="selectedAssets.indexOf(asset.id) !== -1"></td>
         <td>{{asset.name}}</td>
         <td>{{asset.type}}</td>
         <td>{{asset.location}}</td>
