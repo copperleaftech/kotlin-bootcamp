@@ -1,3 +1,16 @@
 <h1 class="page-title">{{title}}</h1>
 
-<app-investment-form></app-investment-form>
+<nav>
+  <ul class="stepper">
+    <li><a routerLink="/overview" routerLinkActive="active">Investment Overview</a></li>
+    <li><a routerLink="/assets" routerLinkActive="active">Asset Selection</a></li>
+    <li><a routerLink="/summary" routerLinkActive="active">Summary</a></li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
+
+<div class="nav-buttons">
+  <button class="prev" routerLink="{{prevPage}}">Previous</button>
+  <button class="next" routerLink="{{nextPage}}">Next</button>
+</div>

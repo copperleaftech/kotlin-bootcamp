@@ -1,19 +1,19 @@
 <div class="container">
   <form #investmentForm="ngForm" (ngSubmit)="onSubmit(investmentForm)">
     <div class="text-entry investment-title">
-      <input [(ngModel)]="model.investmentTitle" id="investment-title" name="title" type="text" placeholder="My New Investment">
       <label for="investment-title">Investment Title</label>
+      <input [(ngModel)]="model.investmentTitle" id="investment-title" name="title" type="text">
     </div>
 
     <div class="half-width-container">
       <div class="text-entry half-width">
-        <input [(ngModel)]="model.sponsorName" id="sponsor-name" name="sponsorName" type="text" placeholder="Sponsor Name">
         <label for="sponsor-name">Sponsor Name</label>
+        <input [(ngModel)]="model.sponsorName" id="sponsor-name" name="sponsorName" type="text">
       </div>
 
       <div class="text-entry half-width">
-        <input [(ngModel)]="model.requiredBy" id="required-by" name="requiredBy" type="text" placeholder="Enter a Date">
         <label for="required-by">Required By</label>
+        <input [(ngModel)]="model.requiredBy" id="required-by" name="requiredBy" type="text">
       </div>
     </div>
 
@@ -26,38 +26,6 @@
       <label for="project-scope">Project Scope</label>
       <textarea [(ngModel)]="model.projectScope" name="projectScope" id="project-scope"></textarea>
     </div>
-
-    <h3 class="secondary-heading"><span>Assets</span></h3>
-
-    <div class="asset-search">
-      <label for="asset-search-box">Search</label>
-      <input id="asset-search-box" type="text" (keyup)="search($event)">
-    </div>
-
-    <table *ngIf="assets" class="asset-table">
-      <thead>
-      <tr>
-        <th>Selected</th>
-        <th>Asset Name</th>
-        <th>Asset Type</th>
-        <th>Location/Facility</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr *ngFor="let asset of (filteredAssets ? filteredAssets : assets)">
-        <td><input type="checkbox" value="{{asset.id}}" name="asset-{{asset.id}}"
-                   (click)="toggleAssetSelection(asset.id)"
-                   [checked]="selectedAssets.indexOf(asset.id) !== -1"></td>
-        <td>{{asset.name}}</td>
-        <td>{{asset.type}}</td>
-        <td>{{asset.location}}</td>
-      </tr>
-
-      </tbody>
-    </table>
-
-    <br>
-    <button type="submit">Submit</button>
   </form>
 </div>
+

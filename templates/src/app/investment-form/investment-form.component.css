@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 90%;
   max-width: 60rem;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
 
   background-color: white;
   padding: 3rem;
@@ -35,18 +35,10 @@ label {
 .text-entry input {
   width: 100%;
   display: block;
-  border: 0px solid;
   box-sizing: border-box;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #555;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
-}
-
-.text-entry input:focus {
-  background-color: #fef8d7;
-  outline: none;
 }
 
 .text-entry.investment-title input {
@@ -63,7 +55,20 @@ label {
 
 .longform-entry textarea {
   display: block;
+  box-sizing: border-box;
   margin-top: 0.5rem;
   width: 100%;
   min-height: 6rem;
+}
+
+.asset-table tr.selected {
+  background-color: rgba(0, 98, 152, 0.25);
+}
+
+.asset-search-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  margin: 1rem 0;
 }

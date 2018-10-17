@@ -22,7 +22,7 @@ export class InvestmentFormComponent implements OnInit {
   selectedAssets = []; // ugh
   filteredAssets = null;
 
-  model = new Investment();
+  model = new Investment(0, '', '', '', '', '',[]);
 
   constructor(private http: HttpClient) { }
 
@@ -32,8 +32,8 @@ export class InvestmentFormComponent implements OnInit {
 
   getAssets() {
     this.http.get(this.assetsApiUrl).subscribe((data) => {
-      console.log('data', data._embedded.assets);
-      this.assets = data._embedded.assets;
+      console.log('data', data['_embedded'].assets);
+      this.assets = data['_embedded'].assets;
     });
   }
 
@@ -52,7 +52,7 @@ export class InvestmentFormComponent implements OnInit {
     const searchUrl = `${this.assetSearchApiUrlBase}?name=${query}&type=${query}&location=${query}`;
 
     this.http.get(searchUrl).subscribe((data) => {
-      this.filteredAssets = data._embedded.assets;
+      this.filteredAssets = data['_embedded'].assets;
     });
   }
 
