@@ -19,11 +19,16 @@ export class InvestmentFormComponent implements OnInit {
 
   getInvestment() {
     this.investment = this.formService.getInvestment();
-    console.log('investment', this.investment)
+  }
+
+  validate(e) {
+    const field = e.target.name;
+    const value = e.target.value;
+
+    this.formService.validateInvestmentField(field, value);
   }
 
   updateField(e) {
-    console.log('event', event)
     const field = e.target.name;
     const value = e.target.value;
 

@@ -127,9 +127,19 @@ table th {
 
 
 /* GENERAL FORM STYLING */
-label {
+.entry label {
   display: block;
   font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.entry .error {
+  background-color: #ffd0d0;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  border: 1px solid #f37575;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 
@@ -163,7 +173,6 @@ label {
 .longform-entry textarea {
   display: block;
   box-sizing: border-box;
-  margin-top: 0.5rem;
   width: 100%;
   min-height: 6rem;
 }

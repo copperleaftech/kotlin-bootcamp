@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Observer} from 'rxjs';
+import moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,44 @@ export class FormService {
   constructor(private http: HttpClient) { }
 
   // hardcoded to my IP address for demoing
-  apiUrlBase = 'http://192.168.11.55:8080/v1/'
+  apiUrlBase = 'http://192.168.11.55:8080/v1/';
 
   // apiUrlBase = 'http://localhost:8080/v1/'
-  assetsApiUrl = this.apiUrlBase + 'assets'
-  assetSearchApiUrlBase = this.apiUrlBase + 'assets/search/all'
-  investmentsApiUrl = this.apiUrlBase + 'investments'
+  assetsApiUrl = this.apiUrlBase + 'assets';
+  assetSearchApiUrlBase = this.apiUrlBase + 'assets/search/all';
+  investmentsApiUrl = this.apiUrlBase + 'investments';
 
   investment = {
-    title: null,
-    sponsorName: null,
-    requiredBy: null,
-    projectReason: null,
-    projectScope: null,
+    title: {
+      type: 'string',
+      required: true,
+      value: null,
+      error: null,
+    },
+    sponsorName: {
+      type: 'string',
+      required: true,
+      value: null,
+      error: null,
+    },
+    requiredBy: {
+      type: 'date',
+      required: true,
+      value: null,
+      error: null,
+    },
+    projectReason: {
+      type: 'string',
+      required: true,
+      value: null,
+      error: null,
+    },
+    projectScope: {
+      type: 'string',
+      required: true,
+      value: null,
+      error: null,
+    },
   };
   assets = []; // is this necessary?
   selectedAssets = []; // ugh
@@ -63,8 +89,29 @@ export class FormService {
     });
   }
 
+  validateInvestmentField(field, value) {
+    // this is poorly implemented
+    if (value === '') {
+      if (this.investment[field].required) {
+        this.investment[field].error = 'Field is required.';
+      } else {
+        this.investment[field].error = null;
+      }
+    } else {
+      this.investment[field].error = null; // clear any previous 'field is required' errors
+      if (this.investment[field].type === 'date') {
+        if (!moment(value, 'YYYY-MM-DD', true).isValid()) {
+          this.investment[field].error = 'Invalid date. Date must be in the format YYYY-MM-DD.';
+        } else {
+          this.investment[field].error = null;
+        }
+      }
+    }
+  }
+
   setInvestmentField(field, value) {
-    this.investment[field] = value;
+    this.investment[field].value = value;
+
   }
 
   getInvestment() {

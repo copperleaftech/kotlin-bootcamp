@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,7 @@ export class AppComponent {
     summary: {prev: 'assets', next: null}
   };
 
-  constructor(private router: Router, private http: HttpClient ) {
+  constructor(private router: Router) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentPage = event.url.replace('/', '');
