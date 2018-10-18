@@ -1,31 +1,26 @@
-<div class="container">
-  <form #investmentForm="ngForm" (ngSubmit)="onSubmit(investmentForm)">
-    <div class="text-entry investment-title">
-      <label for="investment-title">Investment Title</label>
-      <input [(ngModel)]="model.investmentTitle" id="investment-title" name="title" type="text">
-    </div>
-
-    <div class="half-width-container">
-      <div class="text-entry half-width">
-        <label for="sponsor-name">Sponsor Name</label>
-        <input [(ngModel)]="model.sponsorName" id="sponsor-name" name="sponsorName" type="text">
-      </div>
-
-      <div class="text-entry half-width">
-        <label for="required-by">Required By</label>
-        <input [(ngModel)]="model.requiredBy" id="required-by" name="requiredBy" type="text">
-      </div>
-    </div>
-
-    <div class="longform-entry">
-      <label for="project-reason">Project Reason</label>
-      <textarea [(ngModel)]="model.projectReason" name="projectReason" id="project-reason"></textarea>
-    </div>
-
-    <div class="longform-entry">
-      <label for="project-scope">Project Scope</label>
-      <textarea [(ngModel)]="model.projectScope" name="projectScope" id="project-scope"></textarea>
-    </div>
-  </form>
+<div class="text-entry investment-title">
+  <label for="investment-title">Investment Title</label>
+  <input id="investment-title" name="title" type="text" value="{{investment.title}}" (change)="updateField($event)">
 </div>
 
+<div class="half-width-container">
+  <div class="text-entry half-width">
+    <label for="sponsor-name">Sponsor Name</label>
+    <input id="sponsor-name" name="sponsorName" type="text" value="{{investment.sponsorName}}" (change)="updateField($event)">
+  </div>
+
+  <div class="text-entry half-width">
+    <label for="required-by">Required By</label>
+    <input id="required-by" name="requiredBy" type="text" value="{{investment.requiredBy}}" (change)="updateField($event)">
+  </div>
+</div>
+
+<div class="longform-entry">
+  <label for="project-reason">Project Reason</label>
+  <textarea name="projectReason" id="project-reason" value="{{investment.projectReason}}" (change)="updateField($event)"></textarea>
+</div>
+
+<div class="longform-entry">
+  <label for="project-scope">Project Scope</label>
+  <textarea name="projectScope" id="project-scope" value="{{investment.projectScope}}" (change)="updateField($event)"></textarea>
+</div>

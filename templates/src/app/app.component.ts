@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,12 @@ export class AppComponent {
     summary: {prev: 'assets', next: null}
   };
 
-  constructor(private router: Router ) {
+  constructor(private router: Router, private http: HttpClient ) {
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentPage = event.url.replace('/', '');
-        this.prevPage = '/' + this.urls[currentPage].prev;
-        this.nextPage = '/' + this.urls[currentPage].next;
+        this.prevPage = this.urls[currentPage].prev ? '/' + this.urls[currentPage].prev : null;
+        this.nextPage = this.urls[currentPage].next ? '/' + this.urls[currentPage].next : null;
       }
     });
   }

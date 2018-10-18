@@ -21,12 +21,18 @@ h3.secondary-heading {
   color: #006298;
   border-bottom: 2px solid #006298;
   line-height: 0.1rem;
-  margin-top: 4rem;
+  /*margin-top: 4rem;*/
 }
 
 h3.secondary-heading span {
   background: #fff;
   padding-right: 1rem;
+}
+
+h4 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 button {
@@ -43,3 +49,166 @@ table th {
   text-align: left;
 }
 
+
+.stepper {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.stepper li {
+  margin: 0;
+}
+
+.stepper li:after {
+  color: #006298;
+  content: '>';
+  padding: 0 1rem;
+}
+
+.stepper li:last-child:after {
+  content: '';
+  padding: 0;
+}
+
+.stepper a {
+  text-decoration: none;
+  color: #555555;
+}
+
+.stepper a.active {
+  color: #006298;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.nav-buttons .prev {
+  margin-right: 1rem;
+  color: #787878;
+  background-color: transparent;
+  border: 1px solid #ababab;
+}
+
+.nav-buttons .prev:hover {
+  background-color: #f9f9f9;
+}
+
+.nav-buttons .next:hover {
+  background-color: #004971;
+}
+
+
+.container {
+  box-sizing: border-box;
+  width: 90%;
+  max-width: 60rem;
+  margin: 0 auto 2rem;
+
+  background-color: white;
+  padding: 3rem;
+
+}
+
+.half-width-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.half-width {
+  width: 48%;
+}
+
+
+/* GENERAL FORM STYLING */
+label {
+  display: block;
+  font-size: 0.9rem;
+}
+
+
+/* TEXT FIELDS */
+
+.text-entry {
+  margin-bottom: 1rem;
+}
+
+.text-entry input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.text-entry.investment-title input {
+  font-size: 2.3rem;
+}
+
+
+/* LONGFORM TEXT FIELDS */
+
+.longform-entry {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.longform-entry textarea {
+  display: block;
+  box-sizing: border-box;
+  margin-top: 0.5rem;
+  width: 100%;
+  min-height: 6rem;
+}
+
+.asset-table tr.selected {
+  background-color: rgba(0, 98, 152, 0.25)!important;
+}
+
+.asset-search-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+}
+
+
+.summary-field {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.success-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+  height: 20rem;
+  background-color: #c2d9be;
+
+  padding: 3rem;
+  box-sizing: border-box;
+  font-size: 2.5rem;
+}
+
+.success-modal:before {
+  display: block;
+  text-align: center;
+  margin: 0 auto 2rem;
+  font-size: 4rem;
+  width: 6rem;
+  height: 6rem;
+  content: '\2713';
+  color: #ffffff;
+  background-color: #70a668;
+  border-radius: 50%;
+}
