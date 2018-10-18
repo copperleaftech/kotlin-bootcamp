@@ -9,9 +9,12 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
-  apiUrlBase = 'http://localhost:8080/v1/'
+  // hardcoded to my IP address for demoing
+  apiUrlBase = 'http://192.168.11.55:8080/v1/'
+
+  // apiUrlBase = 'http://localhost:8080/v1/'
   assetsApiUrl = this.apiUrlBase + 'assets'
-  assetSearchApiUrlBase = this.apiUrlBase + 'assets/search/queryByNameContainingOrTypeContainingOrLocationContainingAllIgnoreCase'
+  assetSearchApiUrlBase = this.apiUrlBase + 'assets/search/all'
   investmentsApiUrl = this.apiUrlBase + 'investments'
 
   investment = {
