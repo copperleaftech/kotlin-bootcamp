@@ -11,9 +11,9 @@ export class FormService {
   constructor(private http: HttpClient) { }
 
   // hardcoded to my IP address for demoing
-  apiUrlBase = 'http://192.168.11.55:8080/v1/';
+  // apiUrlBase = 'http://192.168.11.55:8080/v1/';
 
-  // apiUrlBase = 'http://localhost:8080/v1/'
+  apiUrlBase = 'http://localhost:8080/v1/'
   assetsApiUrl = this.apiUrlBase + 'assets';
   assetSearchApiUrlBase = this.apiUrlBase + 'assets/search/all';
   investmentsApiUrl = this.apiUrlBase + 'investments';
