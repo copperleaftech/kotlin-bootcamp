@@ -135,7 +135,13 @@ export class FormService {
       })
     };
 
-    return this.http.post(this.investmentsApiUrl, this.investment, httpOptions);
+    const investment = this.investment; // this doesn't work inside reduce
+    const data = Object.keys(investment).reduce((acc, key) => {
+      acc[key] = investment[key].value;
+      return acc;
+    }, {});
+
+    return this.http.post(this.investmentsApiUrl, data, httpOptions);
   }
 
   addAssets(investmentId) {
