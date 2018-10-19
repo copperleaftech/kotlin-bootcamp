@@ -9,7 +9,7 @@ import {FormService} from '../form-service.service';
 export class InvestmentSummaryComponent implements OnInit {
   investment = null;
   selectedAssets = null;
-  success = null;
+  endState = null;
 
   constructor(private formService: FormService) { }
 
@@ -30,8 +30,14 @@ export class InvestmentSummaryComponent implements OnInit {
     this.formService.createInvestment().subscribe(rsp => {
       const investmentId = rsp['id'];
       this.formService.addAssets(investmentId).subscribe(assetsRsp => {
-        this.success = true;
+        this.endState = 'success';
+      },
+      assetApiError => {
+        this.endState = 'error';
       });
+    },
+    investmentApiError => {
+      this.endState = 'error';
     });
   }
 

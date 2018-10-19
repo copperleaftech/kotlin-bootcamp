@@ -21,7 +21,7 @@ h3.secondary-heading {
   color: #006298;
   border-bottom: 2px solid #006298;
   line-height: 0.1rem;
-  /*margin-top: 4rem;*/
+  margin-bottom: 3rem; /* ugh margin collapsing */
 }
 
 h3.secondary-heading span {
@@ -35,7 +35,7 @@ h4 {
   margin-bottom: 1rem;
 }
 
-button {
+button.button {
   background-color: #006298;
   color: #fff;
   border: 0;
@@ -133,7 +133,7 @@ table th {
   margin-bottom: 0.5rem;
 }
 
-.entry .error {
+.error {
   background-color: #ffd0d0;
   padding: 0.5rem;
   font-size: 0.8rem;
@@ -220,4 +220,15 @@ table th {
   color: #ffffff;
   background-color: #70a668;
   border-radius: 50%;
+}
+
+
+.investment-summary-section {
+  padding-bottom: 1rem;
+}
+
+
+
+.pika-single.is-hidden {
+  display: none;
 }

@@ -1,6 +1,9 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 
+import * as Pikaday from 'pikaday';
+
 import { FormService } from '../form-service.service';
+
 
 @Component({
   selector: 'app-investment-form',
@@ -15,6 +18,7 @@ export class InvestmentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInvestment();
+    const datepicker = new Pikaday({ field: document.getElementById('required-by') });
   }
 
   getInvestment() {

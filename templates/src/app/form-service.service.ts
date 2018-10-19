@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, Observer} from 'rxjs';
-import moment from 'moment';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -111,7 +111,6 @@ export class FormService {
 
   setInvestmentField(field, value) {
     this.investment[field].value = value;
-
   }
 
   getInvestment() {

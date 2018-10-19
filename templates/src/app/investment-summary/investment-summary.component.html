@@ -1,45 +1,54 @@
-<h3 class="secondary-heading"><span>Investment Overview</span></h3>
+<section class="investment-summary-section">
+  <h3 class="secondary-heading"><span>Investment Overview</span></h3>
 
-<h4>{{investment.title.value}}</h4>
-<div class="summary-field">
-  <strong>Sponsor Name:</strong> {{investment.sponsorName.value}}
+  <h4>{{investment.title.value}}</h4>
+  <div class="summary-field">
+    <strong>Sponsored by</strong> {{investment.sponsorName.value}}
+  </div>
+  <div class="summary-field">
+    <strong>Required by</strong> {{investment.requiredBy.value}}
+  </div>
+
+  <div class="summary-field">
+    <strong>Project Reason</strong>
+    <p>{{investment.projectReason.value}}</p>
+  </div>
+
+  <div class="summary-field">
+    <strong>Project Scope</strong>
+    <p>{{investment.projectScope.value}}</p>
+  </div>
+</section>
+
+<section class="investment-summary-section">
+
+  <h3 class="secondary-heading"><span>Assets</span></h3>
+
+  <table *ngIf="selectedAssets" class="table table-striped asset-table">
+    <thead>
+    <tr>
+      <th class="asset-name">Asset Name</th>
+      <th class="asset-type">Asset Type</th>
+      <th class="location">Location/Facility</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let asset of selectedAssets">
+      <td>{{asset.name}}</td>
+      <td>{{asset.type}}</td>
+      <td>{{asset.location}}</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="error" *ngIf="endState === 'error'">
+  Your changes could not be saved. Please try again later or contact our staff for support.
 </div>
-<div class="summary-field">
-  <strong>Required By:</strong> {{investment.requiredBy.value}}
-</div>
 
-<div class="summary-field">
-  <strong>Project Reason</strong>
-  <p>{{investment.projectReason.value}}</p>
-</div>
+<button class="button" (click)="submitInvestment()">Submit</button>
 
-<div class="summary-field">
-  <strong>Project Scope</strong>
-  <p>{{investment.projectScope.value}}</p>
-</div>
-
-<h3 class="secondary-heading"><span>Assets</span></h3>
-
-<table *ngIf="selectedAssets" class="table table-striped asset-table">
-  <thead>
-  <tr>
-    <th class="asset-name">Asset Name</th>
-    <th class="asset-type">Asset Type</th>
-    <th class="location">Location/Facility</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <tr *ngFor="let asset of selectedAssets">
-    <td>{{asset.name}}</td>
-    <td>{{asset.type}}</td>
-    <td>{{asset.location}}</td>
-  </tr>
-  </tbody>
-</table>
-
-<button (click)="submitInvestment()">Submit</button>
-
-<div class="success-modal" *ngIf="success">
+<div class="success-modal" *ngIf="endState === 'success'">
   Your investment was created successfully.
 </div>
