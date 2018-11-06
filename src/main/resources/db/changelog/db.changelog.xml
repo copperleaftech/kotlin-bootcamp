@@ -1,0 +1,71 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="SYin (generated)" id="1539365314616-1">
+        <createTable tableName="asset">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="assetPK"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539371513885-1">
+        <createTable tableName="asset">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="assetPK"/>
+            </column>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="value_measures" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539371513885-2">
+        <createTable tableName="investment">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints primaryKey="true" primaryKeyName="investmentPK"/>
+            </column>
+            <column name="project_reason" type="VARCHAR(255)"/>
+            <column name="project_scope" type="VARCHAR(255)"/>
+            <column name="required_by" type="VARCHAR(255)"/>
+            <column name="sponsor_name" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539377030151-1">
+        <addColumn tableName="asset">
+            <column name="investment_id" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539377030151-2">
+        <addForeignKeyConstraint baseColumnNames="investment_id" baseTableName="asset" constraintName="FKgnshhxi56ivtxljrtloi0hto2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="investment"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-1">
+        <createTable tableName="investment_asset">
+            <column name="investment_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="asset_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-2">
+        <addPrimaryKey columnNames="investment_id, asset_id" tableName="investment_asset"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-3">
+        <addForeignKeyConstraint baseColumnNames="asset_id" baseTableName="investment_asset" constraintName="FKml5bpgfxkiwu9sa15skcr6nww" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="investment"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-4">
+        <dropForeignKeyConstraint baseTableName="asset" constraintName="FKgnshhxi56ivtxljrtloi0hto2"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-5">
+        <dropColumn columnName="investment_id" tableName="asset"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539640773393-6">
+        <dropColumn columnName="value_measures" tableName="asset"/>
+    </changeSet>
+    <changeSet author="SYin (generated)" id="1539734387305-1">
+        <dropPrimaryKey constraintName="investment_asset_pkey" tableName="investment_asset"/>
+    </changeSet>
+</databaseChangeLog>

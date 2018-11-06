@@ -1,0 +1,36 @@
+<div class="entry text-entry investment-title">
+  <div class="error" *ngIf="investment.title.error">{{investment.title.error}}</div>
+  <label for="investment-title">Investment Title</label>
+  <input id="investment-title" name="title" type="text" value="{{investment.title.value}}"
+         (change)="updateField($event)" (blur)="validate($event)">
+</div>
+
+<div class="half-width-container">
+  <div class="entry text-entry half-width">
+    <div class="error" *ngIf="investment.sponsorName.error">{{investment.sponsorName.error}}</div>
+    <label for="sponsor-name">Sponsor Name</label>
+    <input id="sponsor-name" name="sponsorName" type="text" value="{{investment.sponsorName.value}}"
+           (change)="updateField($event)" (blur)="validate($event)">
+  </div>
+
+  <div class="entry text-entry half-width">
+    <div class="error" *ngIf="investment.requiredBy.error">{{investment.requiredBy.error}}</div>
+    <label for="required-by">Required By</label>
+    <input id="required-by" name="requiredBy" type="text" value="{{investment.requiredBy.value}}"
+           (change)="updateField($event)" (blur)="validate($event)">
+  </div>
+</div>
+
+<div class="entry longform-entry">
+  <div class="error" *ngIf="investment.projectReason.error">{{investment.projectReason.error}}</div>
+  <label for="project-reason">Project Reason</label>
+  <textarea name="projectReason" id="project-reason" value="{{investment.projectReason.value}}"
+            (change)="updateField($event)" (blur)="validate($event)"></textarea>
+</div>
+
+<div class="entry longform-entry">
+  <div class="error" *ngIf="investment.projectScope.error">{{investment.projectScope.error}}</div>
+  <label for="project-scope">Project Scope</label>
+  <textarea name="projectScope" id="project-scope" value="{{investment.projectScope.value}}"
+            (change)="updateField($event)" (blur)="validate($event)"></textarea>
+</div>

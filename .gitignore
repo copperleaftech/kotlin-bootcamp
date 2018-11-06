@@ -1,14 +1,23 @@
-.gradle
-/build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+target/
+*/src/*/kotlin/META-INF
+*/src/META-INF/
+*/src/*/kotlin/META-INF/
+.classpath
+.springBeans
+.project
+.DS_Store
+.settings/
+.idea/
+out/
+bin/
+intellij/
+build/
+*.log
+*.log.*
+*.iml
+*.ipr
+*.iws
+.gradle/
+!etc/eclipse/.checkstyle
+classes/
+ktlint

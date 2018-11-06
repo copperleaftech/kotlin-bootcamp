@@ -1,0 +1,26 @@
+<div class="asset-search">
+  <input id="asset-search-box" class="asset-search-box" type="text" (keyup)="search($event)" placeholder="Search">
+</div>
+
+<table *ngIf="assets" class="table table-striped asset-table">
+  <thead>
+  <tr>
+    <th class="selected">Selected</th>
+    <th class="asset-name">Asset Name</th>
+    <th class="asset-type">Asset Type</th>
+    <th class="location">Location/Facility</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let asset of (filteredAssets ? filteredAssets : assets)"
+      [ngClass]="{'selected': selectedAssets.indexOf(asset.id) !== -1}">
+    <td><input type="checkbox" value="{{asset.id}}" name="asset-{{asset.id}}"
+               (click)="toggleAssetSelection(asset.id)"
+               [checked]="selectedAssets.indexOf(asset.id) !== -1"></td>
+    <td>{{asset.name}}</td>
+    <td>{{asset.type}}</td>
+    <td>{{asset.location}}</td>
+  </tr>
+  </tbody>
+</table>
